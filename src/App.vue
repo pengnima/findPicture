@@ -21,7 +21,7 @@ navigator,
 text,
 swiper,
 swiper-item,
-image {
+img {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -36,7 +36,7 @@ page {
   font-size: 28rpx;
 }
 
-image {
+img {
   width: 100%;
   display: block;
 }

@@ -13,16 +13,16 @@
       <div class="iconfont icon-search"></div>
     </div>
     <div class="home_tab_content">
-      <div v-show="current === 0">
+      <div v-if="current === 0">
         <home-recommend></home-recommend>
       </div>
-      <div v-show="current === 1">
+      <div v-if="current === 1">
         <home-category></home-category>
       </div>
-      <div v-show="current === 2">
+      <div v-if="current === 2">
         <home-new></home-new>
       </div>
-      <div v-show="current === 3">
+      <div v-if="current === 3">
         <home-album></home-album>
       </div>
     </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { uniBadge, uniSegmentedControl } from "@dcloudio/uni-ui";
+import { uniSegmentedControl } from "@dcloudio/uni-ui";
 import HomeAlbum from "./HomeAlbum.vue";
 import HomeCategory from "./HomeCategory.vue";
 import HomeNew from "./HomeNew.vue";
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       tabs: ["推荐", "分类", "最新", "专辑"],
-      current: 0,
+      current: 3,
     };
   },
   onLoad() {},
@@ -49,11 +49,13 @@ export default {
       if (this.current !== e.currentIndex) {
         this.current = e.currentIndex;
       }
-      console.log(this.current, e.currentIndex);
+      //切换navbar的文字
+      uni.setNavigationBarTitle({
+        title: this.tabs[this.current],
+      });
     },
   },
   components: {
-    uniBadge,
     uniSegmentedControl,
 
     HomeAlbum,
