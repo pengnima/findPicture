@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       tabs: ["推荐", "分类", "最新", "专辑"],
-      current: 0,
+      current: 1
     };
   },
   onLoad() {},
@@ -51,9 +51,9 @@ export default {
       }
       //切换navbar的文字
       uni.setNavigationBarTitle({
-        title: this.tabs[this.current],
+        title: this.tabs[this.current]
       });
-    },
+    }
   },
   components: {
     uniSegmentedControl,
@@ -61,8 +61,8 @@ export default {
     HomeAlbum,
     HomeCategory,
     HomeNew,
-    HomeRecommend,
-  },
+    HomeRecommend
+  }
 };
 </script>
 

@@ -10,9 +10,7 @@
           <img :src="album.user.avatar" mode="widthFix" />
           <span>{{ album.user.name }}</span>
         </div>
-        <div class="desc">
-          {{ album.desc }}
-        </div>
+        <div class="desc">{{ album.desc }}</div>
       </div>
     </div>
     <!--  -->
@@ -26,7 +24,7 @@
         <img
           :data-index="index"
           :src="item.thumb + item.rule.replace('$<Height>', 360)"
-          mode="widthFix"
+          mode="aspectFill"
         />
       </navigator>
     </div>
@@ -54,14 +52,14 @@ export default {
         order: "new",
         skip: 0,
         //1表示第一次请求数据，返回值中有album
-        first: 1,
+        first: 1
       },
 
       // 专辑
       album: {},
       //照片
       wallpaper: [],
-      hasData: true,
+      hasData: true
     };
   },
   methods: {
@@ -69,7 +67,7 @@ export default {
       let { data: res } = await this.request(
         `wallpaper/album/${this.id}/wallpaper`,
         {
-          data: this.queryInfo,
+          data: this.queryInfo
         }
       );
       res = res.res;
@@ -94,11 +92,11 @@ export default {
       } else {
         uni.showToast({
           title: "刷到底了！！",
-          icon: "none",
+          icon: "none"
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -128,9 +126,13 @@ export default {
 .wallpaper {
   display: flex;
   flex-wrap: wrap;
-}
-.wall_item {
-  width: 33.33%;
-  border: 2upx solid #fff;
+
+  .wall_item {
+    width: 33.33%;
+    border: 2upx solid #fff;
+  }
+  img {
+    height: 140upx;
+  }
 }
 </style>

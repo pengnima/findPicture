@@ -76,12 +76,12 @@ export default {
         //关键字
         order: "hot",
         //跳过的条数
-        skip: 0,
+        skip: 0
       },
       recommends: [],
       monthes: {},
       hots: [],
-      hasData: true,
+      hasData: true
     };
   },
   methods: {
@@ -89,7 +89,7 @@ export default {
       let { data: res } = await this.request(
         "http://157.122.54.189:9088/image/v3/homepage/vertical",
         {
-          data: this.requestInfo,
+          data: this.requestInfo
         }
       );
       res = res.res;
@@ -118,15 +118,15 @@ export default {
       } else {
         uni.showToast({
           title: "刷到底了！！",
-          icon: "none",
+          icon: "none"
         });
       }
     },
     handleClick(item, e) {
       getApp().globalData.List = item;
       getApp().globalData.Index = e.target.dataset.index;
-    },
-  },
+    }
+  }
 };
 </script>
 

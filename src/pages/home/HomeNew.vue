@@ -1,7 +1,5 @@
 <template>
-  <div class="home_album">
-    最新
-  </div>
+  <div class="home_new">最新</div>
 </template>
 
 <script>
