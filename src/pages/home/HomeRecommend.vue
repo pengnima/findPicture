@@ -7,13 +7,14 @@
   >
     <!-- 推荐 -->
     <div class="recommend_wrap">
-      <div
+      <navigator
         class="recommend_item img_wrap"
         v-for="item in recommends"
         :key="item.id"
+        :url="`/pages/album/index?id=${item.target}`"
       >
         <img :src="item.thumb" mode="widthFix" />
-      </div>
+      </navigator>
     </div>
     <!-- 月份 -->
     <div class="monthes_wrap">
@@ -24,27 +25,36 @@
       <div class="monthes_msg">{{ monthes.title }}</div>
       <div class="home_more">更多</div>
     </div>
-    <div class="content_wrap">
-      <div
+
+    <div class="content_wrap" @click="handleGlobalEvent(monthes.items, $event)">
+      <navigator
+        :url="'/pages/imgDetail/index'"
         class="content_item img_wrap"
-        v-for="item in monthes.items"
+        v-for="(item, index) in monthes.items"
         :key="item.id"
       >
         <img
+          :data-index="index"
           :src="item.thumb + item.rule.replace('$<Height>', 360)"
           mode="aspectFill"
         />
-      </div>
+      </navigator>
     </div>
+
     <!-- 热门 -->
     <div class="hots_wrap">
       <div class="hots_title">
         <span>热门</span>
       </div>
-      <div class="hots_content">
-        <div class="hot_item img_wrap" v-for="item in hots" :key="item.id">
-          <img :src="item.thumb" mode="widthFix" />
-        </div>
+      <div class="hots_content" @click="handleGlobalEvent(hots, $event)">
+        <navigator
+          :url="'/pages/imgDetail/index'"
+          class="hot_item img_wrap"
+          v-for="(item, index) in hots"
+          :key="item.id"
+        >
+          <img :data-index="index" :src="item.thumb" mode="widthFix" />
+        </navigator>
       </div>
     </div>
   </scroll-view>
@@ -56,6 +66,7 @@ export default {
   created() {
     this.getList();
   },
+  components: {},
   data() {
     return {
       //请求信息
@@ -111,6 +122,10 @@ export default {
         });
       }
     },
+    handleClick(item, e) {
+      getApp().globalData.List = item;
+      getApp().globalData.Index = e.target.dataset.index;
+    },
   },
 };
 </script>
@@ -157,7 +172,9 @@ export default {
     }
   }
 }
-
+.content_wrap {
+  overflow: hidden;
+}
 // 热门
 .hots_title {
   padding: 0 10upx;

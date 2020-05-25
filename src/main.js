@@ -6,6 +6,11 @@ import request from "./utils/request.js";
 Vue.config.productionTip = false;
 Vue.prototype.request = request;
 
+Vue.prototype.handleGlobalEvent = function(item, e) {
+  getApp().globalData.List = item;
+  getApp().globalData.Index = e.target.dataset.index;
+};
+
 App.mpType = "app";
 
 const app = new Vue({

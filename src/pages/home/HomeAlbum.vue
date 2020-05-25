@@ -14,22 +14,28 @@
         </swiper-item>
       </swiper>
 
-      <div class="album_item" v-for="item in albums" :key="item.id">
-        <div class="item_left">
-          <img :src="item.cover" mode="acpectFill" />
+      <navigator
+        :url="'/pages/album/index?id=' + item.id"
+        v-for="item in albums"
+        :key="item.id"
+      >
+        <div class="album_item">
+          <div class="item_left">
+            <img :src="item.cover" mode="aspectFill" />
+          </div>
+          <div class="item_right">
+            <div class="item_name">{{ item.name }}</div>
+            <div class="item_title">{{ item.desc }}</div>
+            <uni-tag
+              class="unitag"
+              text="+ 关注"
+              inverted
+              type="error"
+              size="small"
+            ></uni-tag>
+          </div>
         </div>
-        <div class="item_right">
-          <div class="item_name">{{ item.name }}</div>
-          <div class="item_title">{{ item.desc }}</div>
-          <uni-tag
-            class="unitag"
-            text="+ 关注"
-            inverted
-            type="error"
-            size="small"
-          ></uni-tag>
-        </div>
-      </div>
+      </navigator>
     </scroll-view>
   </div>
 </template>
@@ -70,6 +76,10 @@ export default {
       res = res.res;
       if (res.album.length == 0) {
         this.hasData = false;
+        uni.showToast({
+          title: "刷到底了！！",
+          icon: "none",
+        });
         return;
       }
       if (this.banner.length == 0) {

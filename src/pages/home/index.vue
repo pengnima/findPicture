@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       tabs: ["推荐", "分类", "最新", "专辑"],
-      current: 3,
+      current: 0,
     };
   },
   onLoad() {},
