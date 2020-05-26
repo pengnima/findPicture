@@ -14,11 +14,7 @@
         </swiper-item>
       </swiper>
 
-      <navigator
-        :url="'/pages/album/index?id=' + item.id"
-        v-for="item in albums"
-        :key="item.id"
-      >
+      <navigator :url="'/pages/album/index?id=' + item.id" v-for="item in albums" :key="item.id">
         <div class="album_item">
           <div class="item_left">
             <img :src="item.cover" mode="aspectFill" />
@@ -26,13 +22,7 @@
           <div class="item_right">
             <div class="item_name">{{ item.name }}</div>
             <div class="item_title">{{ item.desc }}</div>
-            <uni-tag
-              class="unitag"
-              text="+ 关注"
-              inverted
-              type="error"
-              size="small"
-            ></uni-tag>
+            <uni-tag class="unitag" text="+ 关注" inverted type="error" size="small"></uni-tag>
           </div>
         </div>
       </navigator>
@@ -47,7 +37,7 @@ export default {
     this.getList();
   },
   components: {
-    uniTag,
+    uniTag
   },
   data() {
     return {
@@ -58,27 +48,27 @@ export default {
         //关键字
         order: "new",
         //跳过的条数
-        skip: 0,
+        skip: 0
       },
 
       //轮播图
       banner: [],
       //专辑
       albums: [],
-      hasData: true,
+      hasData: true
     };
   },
   methods: {
     async getList() {
       let { data: res } = await this.request("wallpaper/album", {
-        data: this.requestInfo,
+        data: this.requestInfo
       });
       res = res.res;
       if (res.album.length == 0) {
         this.hasData = false;
         uni.showToast({
           title: "刷到底了！！",
-          icon: "none",
+          icon: "none"
         });
         return;
       }
@@ -94,11 +84,11 @@ export default {
       } else {
         uni.showToast({
           title: "刷到底了！！",
-          icon: "none",
+          icon: "none"
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

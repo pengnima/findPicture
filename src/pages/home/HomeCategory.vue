@@ -1,10 +1,15 @@
 <template>
   <div class="home_cate">
     <div class="cate_wrap">
-      <div class="cate_item" v-for="item in cateList" :key="item.id">
-        <img :src="item.cover" />
-        <span>{{item.name}}</span>
-      </div>
+      <navigator
+        :url="`/pages/imgCategory/index?id=${item.id}`"
+        class="cate_item"
+        v-for="item in cateList"
+        :key="item.id"
+      >
+        <img :src="item.cover" mode="aspectFill" />
+        <div>{{item.name}}</div>
+      </navigator>
     </div>
   </div>
 </template>
@@ -35,27 +40,31 @@ export default {
 <style lang="scss" scoped>
 .cate_wrap {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
-  align-content: space-between;
 }
 .cate_item {
-  width: 240upx;
-  height: 240upx;
+  width: 33.33%;
   position: relative;
-
-  border-bottom: 8upx solid #fff;
+  border: 4upx solid #fff;
 
   img {
-    height: 100%;
+    height: 240upx;
   }
 
-  span {
+  div {
+    width: 100%;
     position: absolute;
-    left: 20upx;
+    left: 0;
     bottom: 0;
+    padding-left: 20upx;
     color: #fff;
     font-size: 36upx;
+
+    background-image: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0)
+    );
   }
 }
 </style>
